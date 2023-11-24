@@ -85,9 +85,9 @@ const Login = () => {
                 <input
                   type="email"
                   name="email"
-                  onChange={formik.handleChange}
                   placeholder="email"
                   className="input input-bordered"
+                  onChange={formik.handleChange}
                   value={formik.values.email}
                   required
                 />
