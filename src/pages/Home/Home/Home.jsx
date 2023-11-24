@@ -1,4 +1,5 @@
 import Banner from "../../../components/Banner/Banner";
+import AboutUs from "../AboutUs/AboutUs";
 import CallToAction from "../CallToAction/CallToAction";
 import PetsCategory from "../PetsCategory/PetsCategory";
 
@@ -8,6 +9,7 @@ const Home = () => {
       <Banner></Banner>
       <PetsCategory></PetsCategory>
       <CallToAction></CallToAction>
+      <AboutUs></AboutUs>
     </div>
   );
 };
