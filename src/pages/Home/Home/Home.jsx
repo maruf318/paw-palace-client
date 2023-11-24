@@ -10,6 +10,7 @@ const Home = () => {
       <PetsCategory></PetsCategory>
       <CallToAction></CallToAction>
       <AboutUs></AboutUs>
+      {/* TODO: two more sections here */}
     </div>
   );
 };
