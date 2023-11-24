@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const PetsCategory = () => {
   const [category, setCategory] = useState([]);
   useEffect(() => {
-    fetch("category.json")
+    fetch("http://localhost:5000/categories")
       .then((res) => res.json())
       .then((data) => setCategory(data));
   }, []);
@@ -15,7 +15,7 @@ const PetsCategory = () => {
       <div className="grid grid-cols-1 p-6 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {category.map((cat) => (
           <div
-            key={cat.id}
+            key={cat._id}
             className="card card-compact  bg-base-100 shadow-xl"
           >
             <Link to={`/category/${cat.category}`}>
