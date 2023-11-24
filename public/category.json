@@ -1,0 +1,6 @@
+[
+  { "id": 1, "category": "dogs", "image": "https://i.imgur.com/IKfBVkC.jpg" },
+  { "id": 2, "category": "birds", "image": "https://i.imgur.com/RsVE7kq.jpg" },
+  { "id": 3, "category": "cats", "image": "https://i.imgur.com/VpVPrn1.jpg" },
+  { "id": 4, "category": "fish", "image": "https://i.imgur.com/cOkcpqD.jpg" }
+]
