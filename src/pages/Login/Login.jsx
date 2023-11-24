@@ -1,9 +1,16 @@
 import { useFormik } from "formik";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginAnimation from "../../assets/lottieSignIn.json";
 import Lottie from "lottie-react";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   // Pass the useFormik() hook initial form values and a submit function that will
   // be called when the form is submitted
   const formik = useFormik({
@@ -14,7 +21,32 @@ const Login = () => {
     },
     onSubmit: (values) => {
       // alert(JSON.stringify(values, null, 2));
-      console.log(values);
+      console.log(values.email, values.password);
+      const email = values.email;
+      const password = values.password;
+      signIn(email, password)
+        .then((result) => {
+          const user = result.user;
+          console.log(user);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Login successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          console.log(error.message);
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: `${error.message}`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        });
     },
   });
   return (

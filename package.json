@@ -13,6 +13,7 @@
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.13.0",
     "axios": "^1.6.2",
+    "firebase": "^10.6.0",
     "formik": "^2.4.5",
     "localforage": "^1.10.0",
     "lottie-react": "^2.4.0",
@@ -23,7 +24,8 @@
     "react-icons": "^4.12.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.20.0",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "sweetalert2": "^11.10.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

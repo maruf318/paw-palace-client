@@ -1,8 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import pic from "../../../assets/icons8-pets-100.png";
 import userIcon from "../../../assets/icons8-user-96.png";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const navLinks = (
     <>
       <li>
@@ -91,19 +99,41 @@ const Navbar = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img alt="Tailwind CSS Navbar component" src={userIcon} />
+                {user ? (
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src={user.photoURL}
+                  />
+                ) : (
+                  <img alt="Tailwind CSS Navbar component" src={userIcon} />
+                )}
               </div>
             </label>
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
+              {user && <li>Welcome, {user.displayName}</li>}
               <li>
-                <Link>Dashboard</Link>
+                <Link className="btn btn-sm">Dashboard</Link>
               </li>
-              <li>
+
+              {user ? (
+                <li>
+                  <button onClick={handleLogOut} className="btn btn-sm">
+                    LogOut
+                  </button>
+                </li>
+              ) : (
+                <li>
+                  <Link to={"/login"} className="btn btn-sm">
+                    Login
+                  </Link>
+                </li>
+              )}
+              {/* <li>
                 <Link to={"/login"}>Login</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

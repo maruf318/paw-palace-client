@@ -1,11 +1,17 @@
 import { useFormik } from "formik";
 import Lottie from "lottie-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import registerAnimation from "../../assets/lottieRegister.json";
 import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import Swal from "sweetalert2";
 // import { Cloudinary } from "@cloudinary/url-gen";
 
 const Register = () => {
+  const { createUser, logOut } = useContext(AuthContext);
+  const navigate = useNavigate(null);
   // const cld = new Cloudinary({ cloud: { cloudName: "dzecezsni" } });
   //validation
   const validate = (values) => {
@@ -18,8 +24,10 @@ const Register = () => {
 
     if (!values.password) {
       errors.password = "Required";
-    } else if (values.password.length > 20) {
-      errors.password = "Must be 20 characters or less";
+    } else if (values.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+    } else if (!/[!@#$%^&*()_+\-=\[\]{};':",.<>?]/.test(values.password)) {
+      errors.password = "Password must contain 1 special character";
     }
 
     if (!values.email) {
@@ -63,6 +71,32 @@ const Register = () => {
             formik.values.password,
             res.data.url
           );
+          createUser(formik.values.email, formik.values.password)
+            .then((result) => {
+              console.log(result.user);
+              updateProfile(result.user, {
+                displayName: formik.values.name,
+                photoURL: res.data.url,
+              })
+                .then(() => console.log("profile updated"))
+                .catch();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Account Created. Now login",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+
+              logOut().then().catch();
+              navigate("/login");
+            })
+            .catch((error) => {
+              console.error(error);
+              // setErrorText(error.message);
+              // swal("Error", errorText, "error");
+              // notifyError(error.message);
+            });
         }
       } catch (error) {
         console.log(error);
@@ -98,7 +132,9 @@ const Register = () => {
                   value={formik.values.name}
                   required
                 />
-                {formik.errors.name ? <div>{formik.errors.name}</div> : null}
+                {formik.errors.name ? (
+                  <div className="text-red-500">{formik.errors.name}</div>
+                ) : null}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -113,7 +149,9 @@ const Register = () => {
                   value={formik.values.email}
                   required
                 />
-                {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+                {formik.errors.email ? (
+                  <div className="text-red-500">{formik.errors.email}</div>
+                ) : null}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -129,7 +167,7 @@ const Register = () => {
                   required
                 />
                 {formik.errors.password ? (
-                  <div>{formik.errors.password}</div>
+                  <div className="text-red-500">{formik.errors.password}</div>
                 ) : null}
               </div>
               <div className="form-control">
