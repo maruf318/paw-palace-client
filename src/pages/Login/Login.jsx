@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { FaGoogle } from "react-icons/fa";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginAnimation from "../../assets/lottieSignIn.json";
 import Lottie from "lottie-react";
@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -49,6 +49,80 @@ const Login = () => {
         });
     },
   });
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        console.log(result.user);
+        // swal(
+        //   "Google Login",
+        //   "You are one step away of your events ",
+        //   "success"
+        // );
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+        // setTimeout(() => {
+        //   // Delay for 1 second
+        //   navigate(location?.state ? location.state : "/");
+        // }, 2000);
+        // 1000 milliseconds = 1 second
+
+        // navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        // setErrorText(error.message);
+        // swal("Error", errorText, "error");
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: `${error.message}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
+  const handleGithubSignIn = () => {
+    githubSignIn()
+      .then((result) => {
+        console.log(result.user);
+        // swal(
+        //   "Google Login",
+        //   "You are one step away of your events ",
+        //   "success"
+        // );
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your Login successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+        // setTimeout(() => {
+        //   // Delay for 1 second
+        //   navigate(location?.state ? location.state : "/");
+        // }, 2000);
+        // 1000 milliseconds = 1 second
+
+        // navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        // setErrorText(error.message);
+        // swal("Error", errorText, "error");
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: `${error.message}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
   return (
     // <div className="max-w-7xl mx-auto">
     //   <h2>This is login page</h2>
@@ -152,11 +226,18 @@ const Login = () => {
             </form>
             <p className="text-center border-y-2 mb-4">OR</p>
             <button
-              // onClick={handleGoogleSignIn}
+              onClick={handleGoogleSignIn}
               className="btn bg-secondary
          w-1/2 mx-auto capitalize"
             >
               SignIn By<FaGoogle className="text-2xl"></FaGoogle>
+            </button>
+            <button
+              onClick={handleGithubSignIn}
+              className="btn bg-secondary
+         w-1/2 mx-auto capitalize"
+            >
+              SignIn By<FaGithub className="text-2xl"></FaGithub>
             </button>
             <p className="text-black text-center my-4">
               Create a account here

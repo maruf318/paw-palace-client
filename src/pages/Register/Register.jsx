@@ -26,6 +26,7 @@ const Register = () => {
       errors.password = "Required";
     } else if (values.password.length < 6) {
       errors.password = "Password must be at least 6 characters";
+      // eslint-disable-next-line no-useless-escape
     } else if (!/[!@#$%^&*()_+\-=\[\]{};':",.<>?]/.test(values.password)) {
       errors.password = "Password must contain 1 special character";
     }
