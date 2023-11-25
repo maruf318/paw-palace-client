@@ -9,10 +9,11 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../../../hooks/useAdmin";
 
 const DashBoardHome = () => {
   //TODO: get isAdmin value from database
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className="max-w-7xl mx-auto">
       <div className="drawer lg:drawer-open">
@@ -39,22 +40,26 @@ const DashBoardHome = () => {
             {/* Sidebar content here */}
             {/* {isAdmin ? ( */}
             {/* <> */}
-            <li>
-              <NavLink to={"/dashboard/adminHome"}>
-                <FaHome></FaHome>Admin Home
-              </NavLink>
-            </li>
+            {isAdmin && (
+              <>
+                <li>
+                  <NavLink to={"/dashboard/adminHome"}>
+                    <FaHome></FaHome>Admin Home
+                  </NavLink>
+                </li>
 
-            <li>
-              <NavLink to={"/dashboard/allDonations"}>
-                <FaBook></FaBook> All Donations
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={"/dashboard/allUsers"}>
-                <FaUsers></FaUsers> All Users
-              </NavLink>
-            </li>
+                <li>
+                  <NavLink to={"/dashboard/allDonations"}>
+                    <FaBook></FaBook> All Donations
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/dashboard/allUsers"}>
+                    <FaUsers></FaUsers> All Users
+                  </NavLink>
+                </li>
+              </>
+            )}
             <div className="divider"></div>
             {/* </> */}
             {/* ) : (
