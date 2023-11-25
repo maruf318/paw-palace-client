@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import DashBoardHome from "../pages/Dashboard/DashBoardHome/DashBoardHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import AddPet from "../pages/Dashboard/AddPet/AddPet";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -42,10 +43,16 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         children: [
+          //admin routes
           {
             path: "adminHome",
             element: <AdminHome></AdminHome>,
           },
+          {
+            path: "allUsers",
+            element: <AllUsers></AllUsers>,
+          },
+          //user routes
           {
             path: "addPet",
             element: <AddPet></AddPet>,

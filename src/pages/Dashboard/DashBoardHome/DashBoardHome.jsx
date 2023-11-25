@@ -11,6 +11,8 @@ import {
 import { NavLink, Outlet } from "react-router-dom";
 
 const DashBoardHome = () => {
+  //TODO: get isAdmin value from database
+  const isAdmin = true;
   return (
     <div className="max-w-7xl mx-auto">
       <div className="drawer lg:drawer-open">
@@ -49,7 +51,7 @@ const DashBoardHome = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/dashboard/users"}>
+              <NavLink to={"/dashboard/allUsers"}>
                 <FaUsers></FaUsers> All Users
               </NavLink>
             </li>

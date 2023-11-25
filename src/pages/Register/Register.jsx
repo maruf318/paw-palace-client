@@ -7,9 +7,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 // import { Cloudinary } from "@cloudinary/url-gen";
 
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
   const { createUser, logOut } = useContext(AuthContext);
   const navigate = useNavigate(null);
   // const cld = new Cloudinary({ cloud: { cloudName: "dzecezsni" } });
@@ -79,15 +81,34 @@ const Register = () => {
                 displayName: formik.values.name,
                 photoURL: res.data.url,
               })
-                .then(() => console.log("profile updated"))
+                .then(() => {
+                  console.log("profile updated");
+                  const userInfo = {
+                    name: formik.values?.name,
+                    email: formik.values?.email,
+                    photoURL: res.data?.url,
+                  };
+                  axiosPublic.post("/users", userInfo).then((res) => {
+                    if (res.data.insertedId) {
+                      console.log("user added to the database");
+                      Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Account Created. Now login",
+                        showConfirmButton: false,
+                        timer: 1500,
+                      });
+                    }
+                  });
+                })
                 .catch();
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Account Created. Now login",
-                showConfirmButton: false,
-                timer: 1500,
-              });
+              // Swal.fire({
+              //   position: "top-end",
+              //   icon: "success",
+              //   title: "Account Created. Now login",
+              //   showConfirmButton: false,
+              //   timer: 1500,
+              // });
 
               logOut().then().catch();
               navigate("/login");
