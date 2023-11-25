@@ -13,6 +13,7 @@ import { useMemo, useState } from "react";
 import { FaPen, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 const AllPets = () => {
   const [pets, , refetch] = usePets();
   const axiosSecure = useAxiosSecure();
@@ -47,9 +48,9 @@ const AllPets = () => {
       }
     });
   };
-  const handleUpdate = (id) => {
-    console.log(id);
-  };
+  // const handleUpdate = (id) => {
+  //   console.log(id);
+  // };
   const handleAdopt = (id) => {
     console.log(id);
   };
@@ -113,9 +114,13 @@ const AllPets = () => {
       // id: "S.no",
       cell: (info) => (
         <div>
-          <button onClick={() => handleUpdate(info?.getValue())}>
-            <FaPen></FaPen>
-          </button>
+          <Link to={info?.getValue()}>
+            <button
+            //  onClick={() => handleUpdate(info?.getValue())}
+            >
+              <FaPen></FaPen>
+            </button>
+          </Link>
           <button
             className="text-red-500 md:mx-2"
             onClick={() => handleDelete(info?.getValue())}
