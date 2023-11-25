@@ -57,13 +57,13 @@ const AllUsers = () => {
     <div>
       <h2>Total Number of users:{users.length}</h2>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table-sm md:table ">
           {/* head */}
           <thead>
             <tr>
               <th>#</th>
               <th>Image</th>
-              <th>Email</th>
+              <th className="hidden md:block">Email</th>
               <th>Name</th>
               <th>Delete</th>
               <th>Role</th>
@@ -85,7 +85,7 @@ const AllUsers = () => {
                     </div>
                   </div>
                 </td>
-                <td>{user.email}</td>
+                <td className="hidden md:block">{user.email}</td>
                 <td>{user.name}</td>
                 <td>
                   <button

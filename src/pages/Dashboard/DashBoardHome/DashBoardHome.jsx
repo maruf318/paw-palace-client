@@ -18,7 +18,7 @@ const DashBoardHome = () => {
     <div className="max-w-7xl mx-auto">
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content flex flex-col ">
           {/* Page content here */}
           <div className=" p-8">
             <Outlet></Outlet>
@@ -56,6 +56,11 @@ const DashBoardHome = () => {
                 <li>
                   <NavLink to={"/dashboard/allUsers"}>
                     <FaUsers></FaUsers> All Users
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/dashboard/allPets"}>
+                    <FaCat></FaCat> All Pets
                   </NavLink>
                 </li>
               </>

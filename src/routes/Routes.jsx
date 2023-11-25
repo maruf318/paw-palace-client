@@ -9,6 +9,8 @@ import DashBoardHome from "../pages/Dashboard/DashBoardHome/DashBoardHome";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import AddPet from "../pages/Dashboard/AddPet/AddPet";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import MyAddedPets from "../pages/Dashboard/MyAddedPets/MyAddedPets";
+import AllPets from "../pages/Dashboard/AllPets/AllPets";
 
 const router = createBrowserRouter([
   {
@@ -52,10 +54,18 @@ const router = createBrowserRouter([
             path: "allUsers",
             element: <AllUsers></AllUsers>,
           },
+          {
+            path: "allPets",
+            element: <AllPets></AllPets>,
+          },
           //user routes
           {
             path: "addPet",
             element: <AddPet></AddPet>,
+          },
+          {
+            path: "myAddedPets",
+            element: <MyAddedPets></MyAddedPets>,
           },
         ],
       },

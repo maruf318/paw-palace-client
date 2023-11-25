@@ -13,7 +13,7 @@ const useAxiosSecure = () => {
   // Add a request interceptor
   axiosSecure.interceptors.request.use(
     function (config) {
-      console.log("req stopped by interceptors");
+      // console.log("req stopped by interceptors");
       // Do something before request is sent
       const token = localStorage.getItem("access-token");
       // console.log("req stopped by interceptor before adding token", token);
