@@ -15,6 +15,8 @@ import UpdatePet from "../pages/Dashboard/UpdatePet/UpdatePet";
 import PetDetails from "../pages/PetDetails/PetDetails";
 import AdoptionRequest from "../pages/Dashboard/AdoptionRequest/AdoptionRequest";
 import PetPageCategory from "../pages/PetPageCategory/PetPageCategory";
+import TestInfiniteScroll from "../pages/TestInfiniteScroll/TestInfiniteScroll";
+import CreateDonation from "../pages/Dashboard/CreateDonation/CreateDonation";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/petListing",
         element: <PetListing></PetListing>,
+      },
+      {
+        path: "/test",
+        element: <TestInfiniteScroll></TestInfiniteScroll>,
       },
       {
         path: "/category/:name",
@@ -92,6 +98,10 @@ const router = createBrowserRouter([
           {
             path: "adoptionRequest",
             element: <AdoptionRequest></AdoptionRequest>,
+          },
+          {
+            path: "createDonation",
+            element: <CreateDonation></CreateDonation>,
           },
         ],
       },

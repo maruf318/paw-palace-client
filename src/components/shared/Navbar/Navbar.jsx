@@ -54,6 +54,22 @@ const Navbar = () => {
           Donation Campaign
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          // className={
+          //   " border-t-4 hover:bg-white rounded-lg px-2 py-4 bg-secondary text-white font-bold"
+          // }
+          className={({ isActive }) =>
+            isActive
+              ? "font-extrabold dark:text-white border-2 border-y-gray-600"
+              : "bg-secondary dark:text-white font-semibold"
+          }
+          // to={user ? "/borrowedbooks" : "/login"}
+          to={"/test"}
+        >
+          Test
+        </NavLink>
+      </li>
     </>
   );
   return (
