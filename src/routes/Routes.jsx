@@ -32,11 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/petListing",
-        element: (
-          <PrivateRoute>
-            <PetListing></PetListing>
-          </PrivateRoute>
-        ),
+        element: <PetListing></PetListing>,
       },
       {
         path: "/dashboard",
