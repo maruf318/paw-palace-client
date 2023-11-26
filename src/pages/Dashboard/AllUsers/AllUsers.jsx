@@ -90,7 +90,7 @@ const AllUsers = () => {
                 <td>
                   <button
                     onClick={() => handleDeleteUser(user)}
-                    className="btn btn-ghost btn-lg"
+                    className="btn btn-ghost btn-sm"
                   >
                     <FaTrash className="text-red-600"></FaTrash>
                   </button>
@@ -101,7 +101,7 @@ const AllUsers = () => {
                   ) : (
                     <button
                       onClick={() => handleMakeAdmin(user)}
-                      className="btn bg-orange-500 btn-lg"
+                      className="btn bg-secondary btn-sm"
                     >
                       <FaUsers className="text-white text-2xl"></FaUsers>
                     </button>

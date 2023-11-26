@@ -115,7 +115,7 @@ const Navbar = () => {
             >
               {user && <li>Welcome, {user.displayName}</li>}
               <li>
-                <Link to={"/dashboard"} className="btn btn-sm">
+                <Link to={"/dashboard/home"} className="btn btn-sm">
                   Dashboard
                 </Link>
               </li>

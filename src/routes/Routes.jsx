@@ -13,6 +13,8 @@ import MyAddedPets from "../pages/Dashboard/MyAddedPets/MyAddedPets";
 import AllPets from "../pages/Dashboard/AllPets/AllPets";
 import UpdatePet from "../pages/Dashboard/UpdatePet/UpdatePet";
 import PetDetails from "../pages/PetDetails/PetDetails";
+import AdoptionRequest from "../pages/Dashboard/AdoptionRequest/AdoptionRequest";
+import PetPageCategory from "../pages/PetPageCategory/PetPageCategory";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,12 @@ const router = createBrowserRouter([
       {
         path: "/petListing",
         element: <PetListing></PetListing>,
+      },
+      {
+        path: "/category/:name",
+        element: <PetPageCategory></PetPageCategory>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/category/${params.name}`),
       },
       {
         path: "/pet/:id",
@@ -80,6 +88,10 @@ const router = createBrowserRouter([
           {
             path: "myAddedPets",
             element: <MyAddedPets></MyAddedPets>,
+          },
+          {
+            path: "adoptionRequest",
+            element: <AdoptionRequest></AdoptionRequest>,
           },
         ],
       },
