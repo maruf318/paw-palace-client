@@ -43,12 +43,6 @@ const DashBoardHome = () => {
             {isAdmin && (
               <>
                 <li>
-                  <NavLink to={"/dashboard/adminHome"}>
-                    <FaHome></FaHome>Admin Home
-                  </NavLink>
-                </li>
-
-                <li>
                   <NavLink to={"/dashboard/allDonations"}>
                     <FaBook></FaBook> All Donations
                   </NavLink>
@@ -70,6 +64,11 @@ const DashBoardHome = () => {
             {/* ) : (
             <> */}
             <li>
+              <NavLink to={"/dashboard/home"}>
+                <FaHome></FaHome>Home
+              </NavLink>
+            </li>
+            <li>
               <NavLink to={"/dashboard/addPet"}>
                 <FaCat></FaCat> Add a pet
               </NavLink>
@@ -79,11 +78,7 @@ const DashBoardHome = () => {
                 <FaDog></FaDog> My added pets
               </NavLink>
             </li>
-            <li>
-              <NavLink to={"/dashboard/userHome"}>
-                <FaHome></FaHome>User Home
-              </NavLink>
-            </li>
+
             <li>
               <NavLink to={"/dashboard/adoptionRequest"}>
                 <FaSearch></FaSearch> Adoption Request

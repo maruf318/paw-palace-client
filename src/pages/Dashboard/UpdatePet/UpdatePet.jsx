@@ -261,7 +261,7 @@ const UpdatePet = () => {
               </div>
 
               <button className="btn bg-secondary" type="submit">
-                Add Pet
+                Update Pet
               </button>
             </form>
           </div>

@@ -51,8 +51,35 @@ const AllPets = () => {
   // const handleUpdate = (id) => {
   //   console.log(id);
   // };
-  const handleAdopt = (id) => {
-    console.log(id);
+  const handleAdopt = async (id) => {
+    // console.log(id);
+
+    // const res = await axiosSecure.patch(`/pets/${id}`, { adopted: true });
+    // console.log(res.data);
+    // if (res.data.modifiedCount > 0) {
+    //   refetch();
+    // }
+    axiosSecure.patch(`/pet/${id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "adopted",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "pet Already adopted",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   // const columns = [
@@ -211,34 +238,36 @@ const AllPets = () => {
         <p className="text-sm">
           You can click on image/category/name/status to sort
         </p>
-        <div className="mt-5">
-          <button
-            className="btn-sm btn btn-secondary"
-            onClick={() => table.setPageIndex(0)}
-          >
-            First page
-          </button>
-          <button
-            className="btn-sm btn btn-primary"
-            disabled={!table.getCanPreviousPage()}
-            onClick={() => table.previousPage()}
-          >
-            Previous page
-          </button>
-          <button
-            className="btn-sm btn btn-primary"
-            disabled={!table.getCanNextPage()}
-            onClick={() => table.nextPage()}
-          >
-            Next page
-          </button>
-          <button
-            className="btn-sm btn btn-secondary"
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          >
-            Last page
-          </button>
-        </div>
+        {data?.length > 10 && (
+          <div className="mt-5">
+            <button
+              className="btn-sm btn btn-secondary"
+              onClick={() => table.setPageIndex(0)}
+            >
+              First page
+            </button>
+            <button
+              className="btn-sm btn btn-primary"
+              disabled={!table.getCanPreviousPage()}
+              onClick={() => table.previousPage()}
+            >
+              Previous page
+            </button>
+            <button
+              className="btn-sm btn btn-primary"
+              disabled={!table.getCanNextPage()}
+              onClick={() => table.nextPage()}
+            >
+              Next page
+            </button>
+            <button
+              className="btn-sm btn btn-secondary"
+              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+            >
+              Last page
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
