@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const PetListing = () => {
   const axiosPublic = useAxiosPublic();
@@ -98,7 +99,9 @@ const PetListing = () => {
                 <span className="font-bold capitalize"> {p.location}</span>
               </p>
               <div className="card-actions justify-center">
-                <button className="btn btn-primary">Details</button>
+                <Link to={`/pet/${p._id}`}>
+                  <button className="btn btn-primary">Details</button>
+                </Link>
               </div>
             </div>
           </div>

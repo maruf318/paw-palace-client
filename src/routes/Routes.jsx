@@ -12,6 +12,7 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import MyAddedPets from "../pages/Dashboard/MyAddedPets/MyAddedPets";
 import AllPets from "../pages/Dashboard/AllPets/AllPets";
 import UpdatePet from "../pages/Dashboard/UpdatePet/UpdatePet";
+import PetDetails from "../pages/PetDetails/PetDetails";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,16 @@ const router = createBrowserRouter([
       {
         path: "/petListing",
         element: <PetListing></PetListing>,
+      },
+      {
+        path: "/pet/:id",
+        element: (
+          <PrivateRoute>
+            <PetDetails></PetDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/pets/${params.id}`),
       },
       {
         path: "/dashboard",
