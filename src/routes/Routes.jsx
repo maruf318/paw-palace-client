@@ -86,8 +86,8 @@ const router = createBrowserRouter([
           {
             path: "updateDonation/:id",
             element: <UpdateDonation></UpdateDonation>,
-            // loader: ({ params }) =>
-            //   fetch(`http://localhost:5000/pets/${params.id}`),
+            loader: ({ params }) =>
+              fetch(`http://localhost:5000/donations/${params.id}`),
           },
           {
             path: "allPets",
