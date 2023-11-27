@@ -35,6 +35,9 @@ const CreateDonation = () => {
     if (!values.expireDate) {
       errors.expireDate = "Required";
     }
+    if (!values.name) {
+      errors.name = "Required";
+    }
 
     //  else if (
     //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
@@ -51,6 +54,7 @@ const CreateDonation = () => {
       image: "",
       amount: "",
       expireDate: "",
+      name: "",
     },
     validate,
     onSubmit: async () => {
@@ -83,6 +87,8 @@ const CreateDonation = () => {
             donationOwner: user?.email,
             active: active,
             date: currentTimeDate,
+            donationName: formik.values?.name,
+            donatedAmount: 0,
           };
 
           console.log("pet info after image url", donationInfo);
@@ -146,6 +152,23 @@ const CreateDonation = () => {
                 />
                 {formik.errors.expireDate ? (
                   <div className="text-red-500">{formik.errors.expireDate}</div>
+                ) : null}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Donation Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Donation Name"
+                  className="input input-bordered"
+                  onChange={formik.handleChange}
+                  value={formik.values.name}
+                  required
+                />
+                {formik.errors.name ? (
+                  <div className="text-red-500">{formik.errors.name}</div>
                 ) : null}
               </div>
               <div className="form-control">

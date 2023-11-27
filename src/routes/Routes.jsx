@@ -17,6 +17,8 @@ import AdoptionRequest from "../pages/Dashboard/AdoptionRequest/AdoptionRequest"
 import PetPageCategory from "../pages/PetPageCategory/PetPageCategory";
 import TestInfiniteScroll from "../pages/TestInfiniteScroll/TestInfiniteScroll";
 import CreateDonation from "../pages/Dashboard/CreateDonation/CreateDonation";
+import AllDonations from "../pages/Dashboard/AllDonations/AllDonations";
+import UpdateDonation from "../pages/Dashboard/UpdateDonation/UpdateDonation";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +70,7 @@ const router = createBrowserRouter([
         ),
         children: [
           //admin routes
+          //TODO: wrap with admin route
           {
             path: "home",
             element: <AdminHome></AdminHome>,
@@ -75,6 +78,16 @@ const router = createBrowserRouter([
           {
             path: "allUsers",
             element: <AllUsers></AllUsers>,
+          },
+          {
+            path: "allDonations",
+            element: <AllDonations></AllDonations>,
+          },
+          {
+            path: "updateDonation/:id",
+            element: <UpdateDonation></UpdateDonation>,
+            // loader: ({ params }) =>
+            //   fetch(`http://localhost:5000/pets/${params.id}`),
           },
           {
             path: "allPets",

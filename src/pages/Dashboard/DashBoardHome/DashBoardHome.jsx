@@ -8,6 +8,7 @@ import {
   FaShoppingCart,
   FaUsers,
 } from "react-icons/fa";
+import { TiThMenuOutline } from "react-icons/ti";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../../hooks/useAdmin";
 
@@ -20,15 +21,16 @@ const DashBoardHome = () => {
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">
           {/* Page content here */}
+          <label
+            htmlFor="my-drawer-2"
+            className="btn w-1/4  btn-primary drawer-button lg:hidden"
+          >
+            Open Drawer
+            <TiThMenuOutline />
+          </label>
           <div className=" p-8">
             <Outlet></Outlet>
           </div>
-          <label
-            htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
-          >
-            Open drawer
-          </label>
         </div>
         <div className="drawer-side">
           <label

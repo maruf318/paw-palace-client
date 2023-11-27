@@ -48,9 +48,7 @@ const AllPets = () => {
       }
     });
   };
-  // const handleUpdate = (id) => {
-  //   console.log(id);
-  // };
+
   const handleAdopt = async (id) => {
     // console.log(id);
 
@@ -82,28 +80,6 @@ const AllPets = () => {
     });
   };
 
-  // const columns = [
-  //   {
-  //     header: "Serial",
-  //     accessorKey: "_id",
-  //   },
-  //   {
-  //     header: "Image",
-  //     accessorKey: "image",
-  //   },
-  //   {
-  //     header: "name",
-  //     accessorKey: "name",
-  //   },
-  //   {
-  //     header: "Location",
-  //     accessorKey: "location",
-  //   },
-  //   {
-  //     header: "date",
-  //     accessorKey: "date",
-  //   },
-  // ];
   const columns = [
     columnHelper.accessor("", {
       id: "S.no",
