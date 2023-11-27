@@ -8,6 +8,31 @@ const AllDonations = () => {
   const axiosSecure = useAxiosSecure();
 
   console.log(donations);
+  const handleDelete = (id) => {
+    // console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/donation/${id}`);
+        // console.log(res.data);
+        if (res.data.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Donation has been deleted.",
+            icon: "success",
+          });
+        }
+      }
+    });
+  };
   const handleActiveButton = (id, active) => {
     const updateActive = !active;
     console.log(id, updateActive);
@@ -113,7 +138,10 @@ const AllDonations = () => {
                       Edit
                     </button>
                   </Link>
-                  <button className="btn btn-secondary  btn-xs">
+                  <button
+                    onClick={() => handleDelete(donation._id)}
+                    className="btn btn-secondary  btn-xs"
+                  >
                     <FaTrash></FaTrash>
                   </button>
                 </th>
