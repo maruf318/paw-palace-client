@@ -22,6 +22,7 @@ import UpdateDonation from "../pages/Dashboard/UpdateDonation/UpdateDonation";
 import MyDonations from "../pages/Dashboard/MyDonations/MyDonations";
 import MyDonationCampaign from "../pages/Dashboard/MyDonationCampaign/MyDonationCampaign";
 import DonationCampaign from "../pages/DonationCampaign/DonationCampaign";
+import DonationDetails from "../pages/DonationDetails/DonationDetails";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,16 @@ const router = createBrowserRouter([
       {
         path: "/donationCampaign",
         element: <DonationCampaign></DonationCampaign>,
+      },
+      {
+        path: "/donationCampaign/:id",
+        element: (
+          <PrivateRoute>
+            <DonationDetails></DonationDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/donations/${params.id}`),
       },
       {
         path: "/test",

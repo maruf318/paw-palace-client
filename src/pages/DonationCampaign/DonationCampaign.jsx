@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useDonations from "../../hooks/useDonations";
 
 const DonationCampaign = () => {
@@ -27,7 +28,9 @@ const DonationCampaign = () => {
                 <span className="font-bold">{item.donatedAmount}</span>
               </p>
               <div className="card-actions justify-end">
-                <button className="btn btn-primary">View Details</button>
+                <Link to={`/donationCampaign/${item._id}`}>
+                  <button className="btn btn-primary">View Details</button>
+                </Link>
               </div>
             </div>
           </div>
