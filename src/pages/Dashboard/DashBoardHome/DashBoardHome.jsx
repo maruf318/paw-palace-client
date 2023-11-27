@@ -92,8 +92,13 @@ const DashBoardHome = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/dashboard/myDonation"}>
-                <FaShoppingCart></FaShoppingCart> My Donation
+              <NavLink to={"/dashboard/myDonationCampaign"}>
+                <FaShoppingCart></FaShoppingCart> My Donation Campaign
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={"/dashboard/myDonations"}>
+                <FaShoppingCart></FaShoppingCart> My Donations
                 {/* ({cart.length}) */}
               </NavLink>
             </li>

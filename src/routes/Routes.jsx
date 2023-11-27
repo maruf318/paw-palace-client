@@ -19,6 +19,8 @@ import TestInfiniteScroll from "../pages/TestInfiniteScroll/TestInfiniteScroll";
 import CreateDonation from "../pages/Dashboard/CreateDonation/CreateDonation";
 import AllDonations from "../pages/Dashboard/AllDonations/AllDonations";
 import UpdateDonation from "../pages/Dashboard/UpdateDonation/UpdateDonation";
+import MyDonations from "../pages/Dashboard/MyDonations/MyDonations";
+import MyDonationCampaign from "../pages/Dashboard/MyDonationCampaign/MyDonationCampaign";
 
 const router = createBrowserRouter([
   {
@@ -115,6 +117,14 @@ const router = createBrowserRouter([
           {
             path: "createDonation",
             element: <CreateDonation></CreateDonation>,
+          },
+          {
+            path: "myDonations",
+            element: <MyDonations></MyDonations>,
+          },
+          {
+            path: "myDonationCampaign",
+            element: <MyDonationCampaign></MyDonationCampaign>,
           },
         ],
       },
