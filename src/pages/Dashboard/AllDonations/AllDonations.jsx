@@ -1,11 +1,43 @@
-// import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import useDonations from "../../../hooks/useDonations";
+import Swal from "sweetalert2";
+import { FaTrash } from "react-icons/fa";
 const AllDonations = () => {
   const [donations, , refetch] = useDonations();
-  // const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
 
   console.log(donations);
+  const handleActiveButton = (id, active) => {
+    const updateActive = !active;
+    console.log(id, updateActive);
+    const activeInfo = {
+      active: updateActive,
+    };
+
+    ////////////////////////////////
+    axiosSecure.patch(`/donation/${id}`, activeInfo).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Success ",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Error",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
 
   return (
     <div className="space-y-3">
@@ -57,15 +89,33 @@ const AllDonations = () => {
                 </td>
                 <th>
                   {donation?.active ? (
-                    <button className="btn btn-ghost btn-xs">Pause</button>
+                    <button
+                      onClick={() =>
+                        handleActiveButton(donation._id, donation.active)
+                      }
+                      className="btn btn-ghost btn-xs bg-red-200"
+                    >
+                      Pause
+                    </button>
                   ) : (
-                    <button className="btn btn-ghost btn-xs">Active</button>
+                    <button
+                      onClick={() =>
+                        handleActiveButton(donation._id, donation.active)
+                      }
+                      className="btn btn-ghost bg-green-200 btn-xs"
+                    >
+                      Active
+                    </button>
                   )}
 
                   <Link to={`/dashboard/updateDonation/${donation?._id}`}>
-                    <button className="btn btn-ghost btn-xs">Edit</button>
+                    <button className="btn btn-primary lg:mx-2 btn-xs">
+                      Edit
+                    </button>
                   </Link>
-                  <button className="btn btn-ghost btn-xs">History</button>
+                  <button className="btn btn-secondary  btn-xs">
+                    <FaTrash></FaTrash>
+                  </button>
                 </th>
               </tr>
             ))}
