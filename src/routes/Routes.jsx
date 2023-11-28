@@ -23,11 +23,14 @@ import MyDonations from "../pages/Dashboard/MyDonations/MyDonations";
 import MyDonationCampaign from "../pages/Dashboard/MyDonationCampaign/MyDonationCampaign";
 import DonationCampaign from "../pages/DonationCampaign/DonationCampaign";
 import DonationDetails from "../pages/DonationDetails/DonationDetails";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
+
     children: [
       {
         path: "/",

@@ -1,8 +1,14 @@
-# React + Vite
+# Website Name: Paw Palace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website Link:
 
-Currently, two official plugins are available:
+Functionalities of the website:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Anyone can visit my website to look for the animals which are ready for adoption
+- For adoption user need to login and request the other user who is giving away the adoptation.
+- Users can post their pets to give them a new home.
+- Users can also ask for donations upon submitting a donation request form.
+- Logged in users can help him by donating him money.
+- Payment using Stripe is available in this website
+- Admin can pause/delete a post
+- Admin and the user who created a post, can also update a post.
