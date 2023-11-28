@@ -12,6 +12,8 @@ const DonationDetails = () => {
   const loadedData = useLoaderData();
   console.log(loadedData);
   const [amount, setAmount] = useState(0);
+  const difference = loadedData.maxAmount - loadedData.donatedAmount;
+  // console.log(difference);
 
   const handleModal = (e) => {
     console.log(e.target.amount.value);
@@ -30,29 +32,54 @@ const DonationDetails = () => {
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{loadedData?.donationName}</h2>
-          <p>Max Donation/Target: ${loadedData?.maxAmount}</p>
-          <p>Donation Received Till now: ${loadedData?.donatedAmount}</p>
-          <p>About: {loadedData?.shortDescription}</p>
-          <p>Description :{loadedData?.description}</p>
+          <h2 className=" font-black text-center text-3xl italic">
+            {loadedData?.donationName}
+          </h2>
+          <p className="text-lg font-normal">
+            Max Donation/Target:{" "}
+            <span className="font-black">${loadedData?.maxAmount}</span>
+          </p>
+          <p className="text-lg font-normal">
+            Donation Received Till now:{" "}
+            <span className="font-black">${loadedData?.donatedAmount}</span>
+          </p>
+          <p className="text-lg font-bold">
+            About:{" "}
+            <span className="text-sm text-gray-500 font-normal">
+              {loadedData?.shortDescription}
+            </span>
+          </p>
+          <p className="text-lg font-bold">
+            Description :
+            <span className="text-sm text-gray-500 font-normal">
+              {loadedData?.description}
+            </span>{" "}
+          </p>
           {/* <form onSubmit={handleInputField}>
             <input type="number" name="value" id="" min={1} required />
             <input type="submit" value="submit" />
           </form> */}
           <div className="card-actions justify-end">
             {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <button
-              className="btn"
-              onClick={() => document.getElementById("my_modal_5").showModal()}
-            >
-              Payment
-            </button>
+            {loadedData.donatedAmount < loadedData.maxAmount ? (
+              <button
+                className="btn btn-primary"
+                onClick={() =>
+                  document.getElementById("my_modal_5").showModal()
+                }
+              >
+                Payment
+              </button>
+            ) : (
+              <button className="btn btn-disabled"> Donation Complete</button>
+            )}
+
             <dialog
               id="my_modal_5"
               className="modal modal-bottom sm:modal-middle"
             >
               <div className="modal-box">
-                <h3 className="font-bold text-lg">Please Add you details</h3>
+                <h3 className="font-bold text-lg">Please Add Your Amount</h3>
                 {/* <p className="py-4">
                   Press ESC key or click the button below to close
                 </p> */}
@@ -60,11 +87,12 @@ const DonationDetails = () => {
                   <form onSubmit={handleModal} method="dialog">
                     <div className="flex mx-auto justify-center my-6">
                       <label className="label">
-                        <span className="label-text">Donation Amount:</span>
+                        <span className="label-text">Donation Amount: $</span>
                       </label>
                       <input
-                        className="left-0 border-4 text-black w-full"
+                        className="left-0 border-4 text-black w-full text-xl font-bold px-4"
                         min={1}
+                        max={difference}
                         type="number"
                         name="amount"
                         id=""

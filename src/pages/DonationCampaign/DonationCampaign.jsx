@@ -28,9 +28,16 @@ const DonationCampaign = () => {
                 <span className="font-bold">{item.donatedAmount}</span>
               </p>
               <div className="card-actions justify-end">
-                <Link to={`/donationCampaign/${item._id}`}>
-                  <button className="btn btn-primary">View Details</button>
-                </Link>
+                {item.active === true ? (
+                  <Link to={`/donationCampaign/${item._id}`}>
+                    <button className="btn btn-primary">View Details</button>
+                  </Link>
+                ) : (
+                  <button className="btn btn-disabled">Donation Stopped</button>
+                )}
+                {item.donatedAmount >= item.maxAmount && (
+                  <button className="btn btn-disabled">Limit Reached</button>
+                )}
               </div>
             </div>
           </div>
