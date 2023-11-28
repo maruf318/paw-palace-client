@@ -4,12 +4,16 @@ import { useLoaderData } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 import { useState } from "react";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 // import { AuthContext } from "../../providers/AuthProvider";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
 const DonationDetails = () => {
   const loadedData = useLoaderData();
+  const axiosSecure = useAxiosSecure();
   console.log(loadedData);
   const [amount, setAmount] = useState(0);
   const difference = loadedData.maxAmount - loadedData.donatedAmount;
@@ -19,6 +23,15 @@ const DonationDetails = () => {
     console.log(e.target.amount.value);
     setAmount(e.target.amount.value);
   };
+
+  const { data: activeDonations = [] } = useQuery({
+    queryKey: ["activeDonations"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/activeDonations");
+      return res.data?.slice(0, 3);
+    },
+  });
+  console.log(activeDonations);
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -120,6 +133,28 @@ const DonationDetails = () => {
             <CheckoutForm amount={amount} loadedData={loadedData} />
           </Elements>
         )}
+      </div>
+      <SectionTitle heading={"Active Donation"}></SectionTitle>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-20">
+        {activeDonations.map((card) => (
+          <div key={card._id} className="card bg-base-100 shadow-xl">
+            <figure>
+              <img
+                className="w-full h-[300px] object-cover"
+                src={card.image}
+                alt="Shoes"
+              />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">Donation Name: {card.donationName}</h2>
+              <p>Max Amount: {card.maxAmount}</p>
+              <p>Status: Active For Donation</p>
+              {/* <div className="card-actions justify-end">
+                <button className="btn btn-primary">Buy Now</button>
+              </div> */}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
