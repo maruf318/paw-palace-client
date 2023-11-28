@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
@@ -10,6 +10,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 const MyDonationCampaign = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
+  const [data, setData] = useState([]);
   // console.log(user.email);
   const { data: myDonations = [], refetch } = useQuery({
     queryKey: ["myDonations", user?.email],
@@ -51,6 +52,17 @@ const MyDonationCampaign = () => {
       }
     });
   };
+
+  const handleView = async (id) => {
+    console.log(id);
+    // const donationInf = {
+    //   donationId: id,
+    // };
+    const res = await axiosSecure.get(`/viewPayments/${id}`);
+    console.log(res.data);
+    setData(res.data);
+  };
+  console.log(data, typeof data);
   return (
     <div>
       <SectionTitle heading={"My Donation Campaign"}></SectionTitle>
@@ -123,12 +135,86 @@ const MyDonationCampaign = () => {
                       Edit
                     </button>
                   </Link>
-                  <button
-                    // onClick={() => handleDelete(donation._id)}
+                  {/* <button
+                    onClick={() => handleView(donation._id)}
                     className="btn btn-secondary  btn-xs"
                   >
                     View
+                  </button> */}
+                  <button
+                    onClick={() => {
+                      handleView(donation._id);
+                      document.getElementById("my_modal_5").showModal();
+                    }}
+                    className="btn btn-secondary btn-xs"
+                  >
+                    View
                   </button>
+                  {/*  */}
+                  {/* <button
+                    className="btn"
+                    onClick={() =>
+                      document.getElementById("my_modal_5").showModal()
+                    }
+                  >
+                    open modal
+                  </button> */}
+                  <dialog
+                    id="my_modal_5"
+                    className="modal modal-bottom sm:modal-middle"
+                  >
+                    <div className="modal-box">
+                      <h3 className="font-bold text-lg">View Donations</h3>
+                      <p className="py-4">
+                        Press ESC key or click the button below to close
+                      </p>
+                      <div className="">
+                        <form method="dialog">
+                          {/* if there is a button in form, it will close the modal */}
+                          <div className="overflow-x-auto">
+                            <table className="table">
+                              {/* head */}
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Email</th>
+                                  <th>Donated Amount</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {/* {data?.map((a, idx) => (
+                                  <tr key={a?._id}>
+                                    <th>{idx + 1}</th>
+                                    <td>{a?.paymentUser}</td>
+                                    <td>{a?.donatedAmount}</td>
+                                  </tr>
+                                ))} */}
+                                {data ? (
+                                  data.map((a, idx) => (
+                                    <tr key={a?._id || idx}>
+                                      <th>{idx + 1}</th>
+                                      <td>
+                                        {a?.paymentUser || "no Data found"}
+                                      </td>
+                                      <td>
+                                        {a?.donatedAmount || "no Data found"}
+                                      </td>
+                                    </tr>
+                                  ))
+                                ) : (
+                                  <tr>
+                                    <td colSpan="3">No data available</td>
+                                  </tr>
+                                )}
+                              </tbody>
+                            </table>
+                          </div>
+                          <button className="btn btn-primary">Close</button>
+                        </form>
+                      </div>
+                    </div>
+                  </dialog>
+                  {/*  */}
                 </th>
               </tr>
             ))}
