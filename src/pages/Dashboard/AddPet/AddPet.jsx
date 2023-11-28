@@ -6,6 +6,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import axios from "axios";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const AddPet = () => {
   const { user } = useContext(AuthContext);
@@ -125,7 +126,7 @@ const AddPet = () => {
   });
   return (
     <div>
-      <h2>This is add a pet section</h2>
+      <SectionTitle heading={"Add a Pet"}></SectionTitle>
       <div className="justify-center mx-auto mb-10">
         <div className=" p-4">
           <div className="card flex-shrink-0 w-full  shadow-2xl bg-base-100">

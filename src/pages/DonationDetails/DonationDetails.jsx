@@ -3,9 +3,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useLoaderData } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 import { useState } from "react";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
 // import { AuthContext } from "../../providers/AuthProvider";
 
-//TODO: add publishable key
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
 const DonationDetails = () => {
@@ -22,7 +22,7 @@ const DonationDetails = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h2>Donation details page</h2>
+      <SectionTitle heading={"Donation Details"}></SectionTitle>
       <div className="card card-compact bg-base-100 shadow-xl">
         <figure>
           <img

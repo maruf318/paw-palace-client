@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
 import Swal from "sweetalert2";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const MyDonationCampaign = () => {
   const { user } = useContext(AuthContext);
@@ -52,7 +53,7 @@ const MyDonationCampaign = () => {
   };
   return (
     <div>
-      <h2>My donation campaign</h2>
+      <SectionTitle heading={"My Donation Campaign"}></SectionTitle>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

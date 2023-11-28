@@ -13,7 +13,6 @@ import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../../hooks/useAdmin";
 
 const DashBoardHome = () => {
-  //TODO: get isAdmin value from database
   const [isAdmin] = useAdmin();
   return (
     <div className="max-w-7xl mx-auto">
@@ -25,7 +24,7 @@ const DashBoardHome = () => {
             htmlFor="my-drawer-2"
             className="btn w-1/4  btn-primary drawer-button lg:hidden"
           >
-            Open Drawer
+            Open
             <TiThMenuOutline />
           </label>
           <div className=" p-8">

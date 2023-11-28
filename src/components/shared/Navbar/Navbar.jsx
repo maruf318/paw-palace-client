@@ -32,7 +32,6 @@ const Navbar = () => {
               ? "font-extrabold dark:text-white border-2 border-y-gray-600"
               : "bg-secondary dark:text-white font-semibold"
           }
-          // to={user ? "/addbook" : "/login"}
           to={"/petListing"}
         >
           Pet Listing
@@ -40,21 +39,17 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          // className={
-          //   " border-t-4 hover:bg-white rounded-lg px-2 py-4 bg-secondary text-white font-bold"
-          // }
           className={({ isActive }) =>
             isActive
               ? "font-extrabold dark:text-white border-2 border-y-gray-600"
               : "bg-secondary dark:text-white font-semibold"
           }
-          // to={user ? "/borrowedbooks" : "/login"}
           to={"/donationCampaign"}
         >
           Donation Campaign
         </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink
           // className={
           //   " border-t-4 hover:bg-white rounded-lg px-2 py-4 bg-secondary text-white font-bold"
@@ -64,12 +59,12 @@ const Navbar = () => {
               ? "font-extrabold dark:text-white border-2 border-y-gray-600"
               : "bg-secondary dark:text-white font-semibold"
           }
-          // to={user ? "/borrowedbooks" : "/login"}
+      
           to={"/test"}
         >
           Test
         </NavLink>
-      </li>
+      </li> */}
     </>
   );
   return (
@@ -111,7 +106,6 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
         <div className="navbar-end">
-          {/* <a className="btn">Button</a> */}
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
@@ -149,9 +143,6 @@ const Navbar = () => {
                   </Link>
                 </li>
               )}
-              {/* <li>
-                <Link to={"/login"}>Login</Link>
-              </li> */}
             </ul>
           </div>
         </div>

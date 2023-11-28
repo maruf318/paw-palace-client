@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
 
 const PetDetails = () => {
   const axiosSecure = useAxiosSecure();
@@ -50,7 +51,8 @@ const PetDetails = () => {
   console.log(pet);
   return (
     <div className="max-w-7xl mx-auto">
-      <h2>Pet details page</h2>
+      <SectionTitle heading={"Pet Details"}></SectionTitle>
+
       <div className=" lg:card-side bg-base-100 shadow-xl my-10">
         <figure className="lg:w-full">
           <img className="lg:h-[70vh]" src={pet.image} alt="Album" />

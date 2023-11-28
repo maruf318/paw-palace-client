@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaTrash, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -55,6 +56,7 @@ const AllUsers = () => {
   };
   return (
     <div>
+      <SectionTitle heading={"Users"}></SectionTitle>
       <h2>Total Number of users:{users.length}</h2>
       <div className="overflow-x-auto">
         <table className="table-sm md:table ">

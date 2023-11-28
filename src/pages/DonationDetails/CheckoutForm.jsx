@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../providers/AuthProvider";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 
 const CheckoutForm = ({ amount, loadedData }) => {
   const [error, setError] = useState("");
@@ -92,6 +93,13 @@ const CheckoutForm = ({ amount, loadedData }) => {
           amountInfo
         );
         console.log("after patch", response.data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully Payment Done",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     }
   };

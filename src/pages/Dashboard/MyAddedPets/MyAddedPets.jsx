@@ -62,13 +62,6 @@ const MyAddedPets = () => {
   //   console.log(id);
   // };
   const handleAdopt = async (id) => {
-    // console.log(id);
-
-    // const res = await axiosSecure.patch(`/pets/${id}`, { adopted: true });
-    // console.log(res.data);
-    // if (res.data.modifiedCount > 0) {
-    //   refetch();
-    // }
     axiosSecure.patch(`/pet/${id}`).then((res) => {
       console.log(res.data);
       if (res.data.modifiedCount > 0) {

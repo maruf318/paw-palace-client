@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const MyDonations = () => {
   const axiosSecure = useAxiosSecure();
@@ -42,7 +43,7 @@ const MyDonations = () => {
 
   return (
     <div>
-      <h2>My donations page</h2>
+      <SectionTitle heading={"My donations"}></SectionTitle>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -57,7 +58,7 @@ const MyDonations = () => {
           </thead>
           <tbody>
             {info.map((inf, idx) => (
-              <tr key={info._id}>
+              <tr key={inf._id}>
                 <th>{idx + 1}</th>
                 <td>
                   <div className="flex items-center gap-3">

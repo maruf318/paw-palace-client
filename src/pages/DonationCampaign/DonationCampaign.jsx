@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useDonations from "../../hooks/useDonations";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
 
 const DonationCampaign = () => {
   const [donation, ,] = useDonations();
@@ -7,7 +8,7 @@ const DonationCampaign = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h2>This is Donation campaign page</h2>
+      <SectionTitle heading={"Donation Campaign"}></SectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2">
         {donation.map((item) => (
           <div key={item._id} className="card bg-base-100 shadow-xl">

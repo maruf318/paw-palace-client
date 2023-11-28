@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { TiTickOutline } from "react-icons/ti";
 import { RxCross2 } from "react-icons/rx";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const AdoptionRequest = () => {
   const { user } = useContext(AuthContext);
@@ -70,7 +71,7 @@ const AdoptionRequest = () => {
 
   return (
     <div>
-      <h2>This is adoption request page</h2>
+      <SectionTitle heading={"Your Adoption Request"}></SectionTitle>
       {reqPet?.length ? (
         <div className="overflow-x-auto">
           <table className="table table-zebra">
@@ -110,7 +111,7 @@ const AdoptionRequest = () => {
           </table>
         </div>
       ) : (
-        <span>No User has requested for your Pet</span>
+        <span>No User has requested for your Pet yet!</span>
       )}
     </div>
   );
