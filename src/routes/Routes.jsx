@@ -60,7 +60,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/donations/${params.id}`),
+          fetch(`https://paw-palace-server.vercel.app/donations/${params.id}`),
       },
       // {
       //   path: "/test",
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
         path: "/category/:name",
         element: <PetPageCategory></PetPageCategory>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.name}`),
+          fetch(`https://paw-palace-server.vercel.app/category/${params.name}`),
       },
       {
         path: "/pet/:id",
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/pets/${params.id}`),
+          fetch(`https://paw-palace-server.vercel.app/pets/${params.id}`),
       },
       {
         path: "/dashboard",
@@ -108,7 +108,9 @@ const router = createBrowserRouter([
             path: "updateDonation/:id",
             element: <UpdateDonation></UpdateDonation>,
             loader: ({ params }) =>
-              fetch(`http://localhost:5000/donations/${params.id}`),
+              fetch(
+                `https://paw-palace-server.vercel.app/donations/${params.id}`
+              ),
           },
           {
             path: "allPets",
@@ -118,7 +120,7 @@ const router = createBrowserRouter([
             path: "allPets/:id",
             element: <UpdatePet></UpdatePet>,
             loader: ({ params }) =>
-              fetch(`http://localhost:5000/pets/${params.id}`),
+              fetch(`https://paw-palace-server.vercel.app/pets/${params.id}`),
           },
           //user routes
           {
