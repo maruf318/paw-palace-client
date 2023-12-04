@@ -2,6 +2,9 @@
 
 Website Link: https://paw-palace-a394a.web.app/
 
+Admin email: hunter@gmail.com
+Admin Password: 123456A@a
+
 Functionalities of the website:
 
 - Anyone can visit my website to look for the animals which are ready for adoption
