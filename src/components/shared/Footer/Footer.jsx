@@ -2,7 +2,7 @@ import { Rating } from "@mui/material";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center p-4 bg-secondary text-base-content">
+    <footer className="footer footer-center p-4 bg-rose-200 text-base-content">
       <p>According to user response</p>
       <Rating
         name="half-rating-read"

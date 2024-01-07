@@ -11,10 +11,10 @@ const DonationCampaign = () => {
       <SectionTitle heading={"Donation Campaign"}></SectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2">
         {donation.map((item) => (
-          <div key={item._id} className="card bg-base-100 shadow-xl">
+          <div key={item._id} className="card group bg-base-100 shadow-xl">
             <figure>
               <img
-                className="w-full h-[300px] object-cover"
+                className="w-full h-[300px] group-hover:scale-110 object-cover"
                 src={item.image}
                 alt="Shoes"
               />

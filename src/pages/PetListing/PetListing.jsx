@@ -78,10 +78,13 @@ const PetListing = () => {
       </form>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10 p-4">
         {pets.map((p) => (
-          <div key={p._id} className="card card-compact bg-base-100 shadow-xl">
+          <div
+            key={p._id}
+            className="card group card-compact bg-base-100 shadow-xl"
+          >
             <figure>
               <img
-                className="w-full h-[300px] object-cover"
+                className="w-full group-hover:scale-110 h-[300px] object-cover"
                 src={p.image}
                 alt="pet"
               />
